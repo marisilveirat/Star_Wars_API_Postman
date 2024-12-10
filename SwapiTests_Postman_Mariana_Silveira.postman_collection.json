@@ -1,0 +1,617 @@
+{
+	"info": {
+		"_postman_id": "d346da56-03eb-4dbe-ae85-7a4e05052370",
+		"name": "SwapiTests_Postman_Mariana_Silveira",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32835504"
+	},
+	"item": [
+		{
+			"name": "1 Endpoint Testing",
+			"item": [
+				{
+					"name": "1.1 - People endpoint",
+					"item": [
+						{
+							"name": "https://swapi.dev/api/people/5/",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Name is Leia Organa\", function () {\r",
+											"    const jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.name).to.equal(\"Leia Organa\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Height is 150\", function () {\r",
+											"    const jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.height).to.equal(\"150\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://swapi.dev/api/people/5/",
+									"protocol": "https",
+									"host": [
+										"swapi",
+										"dev"
+									],
+									"path": [
+										"api",
+										"people",
+										"5",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Verificar se o endpoint `/people/5/` retorna as informações corretas para Leia Organa, como nome, altura e outros detalhes.\n\n**Objetivo:** Garantir que o sistema entregue dados consistentes para personagens existentes."
+				},
+				{
+					"name": "1.2 - Error Endpoint",
+					"item": [
+						{
+							"name": "https://swapi.dev/api/people/90/",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response message is Not Found\", function () {\r",
+											"    const jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.detail).to.equal(\"Not found\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://swapi.dev/api/people/90/",
+									"protocol": "https",
+									"host": [
+										"swapi",
+										"dev"
+									],
+									"path": [
+										"api",
+										"people",
+										"90",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Testar um ID de personagem inexistente (`/people/90/`) e validar se a API retorna o status 404 e uma mensagem de erro adequada.\n\n  \n**Objetivo:** Assegurar que a API lida corretamente com solicitações inválidas."
+				},
+				{
+					"name": "1.3 - Films Endpoint",
+					"item": [
+						{
+							"name": "https://swapi.dev/api/films/3/",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Film title is correct\", function () {\r",
+											"    const jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.title).to.be.oneOf([\"Return of the Jedi\", \"Revenge of the Sith\"]);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://swapi.dev/api/films/3/",
+									"protocol": "https",
+									"host": [
+										"swapi",
+										"dev"
+									],
+									"path": [
+										"api",
+										"films",
+										"3",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "https://swapi.dev/api/films/6/",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Film title is correct\", function () {\r",
+											"    const jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.title).to.be.oneOf([\"Return of the Jedi\", \"Revenge of the Sith\"]);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://swapi.dev/api/films/6/",
+									"protocol": "https",
+									"host": [
+										"swapi",
+										"dev"
+									],
+									"path": [
+										"api",
+										"films",
+										"6",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Validar que os filmes correspondentes aos endpoints `/films/3/` e `/films/6/` são os esperados.\n\n  \n**Objetivo:** Certificar-se de que os filmes retornados correspondem aos IDs fornecidos."
+				},
+				{
+					"name": "1.4 - Film Error",
+					"item": [
+						{
+							"name": "https://swapi.dev/api/films/90/",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response message is Not Found\", function () {\r",
+											"    const jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.detail).to.equal(\"Not found\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://swapi.dev/api/films/90/",
+									"protocol": "https",
+									"host": [
+										"swapi",
+										"dev"
+									],
+									"path": [
+										"api",
+										"films",
+										"90",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Testar um ID de filme inexistente (`/films/90/`) e confirmar o status 404 e mensagem de erro.\n\n  \n**Objetivo:** Verificar a robustez do sistema contra erros."
+				}
+			]
+		},
+		{
+			"name": "2 Requisition Testing",
+			"item": [
+				{
+					"name": "2.1 - GET Parameter",
+					"item": [
+						{
+							"name": "https://swapi.dev/api/people/?search=Leia",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response contains Leia Organa\", function () {\r",
+											"    const jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.results[0].name).to.equal(\"Leia Organa\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://swapi.dev/api/people/?search=Leia",
+									"protocol": "https",
+									"host": [
+										"swapi",
+										"dev"
+									],
+									"path": [
+										"api",
+										"people",
+										""
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "Leia"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Verificar se a busca com o nome \"Leia\" retorna a lista contendo o personagem correto.\n\n  \n**Objetivo:** Testar a funcionalidade de busca por nome."
+				},
+				{
+					"name": "2.2 - GET Invalid Parameter",
+					"item": [
+						{
+							"name": "https://swapi.dev/api/people/?search=Mariana",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"No results found for search\", function () {\r",
+											"    const jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.count).to.equal(0);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://swapi.dev/api/people/?search=Mariana",
+									"protocol": "https",
+									"host": [
+										"swapi",
+										"dev"
+									],
+									"path": [
+										"api",
+										"people",
+										""
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "Mariana"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Testar uma busca por um nome não existente e validar se a API retorna erro.\n\n  \n**Objetivo:** Confirmar o comportamento esperado para buscas sem resultados."
+				}
+			]
+		},
+		{
+			"name": "3 Endpoint Testing Planets & Starships",
+			"item": [
+				{
+					"name": "3.1 - Planet Validation",
+					"item": [
+						{
+							"name": "https://swapi.dev/api/planets/1/",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Planet name is Tatooine\", function () {\r",
+											"    const jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.name).to.equal(\"Tatooine\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://swapi.dev/api/planets/1/",
+									"protocol": "https",
+									"host": [
+										"swapi",
+										"dev"
+									],
+									"path": [
+										"api",
+										"planets",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Confirmar que o endpoint `/planets/1/` retorna \"Tatooine\".\n\n  \n**Objetivo:** Validar dados corretos para planetas conhecidos."
+				},
+				{
+					"name": "3.2 - Planet Error",
+					"item": [
+						{
+							"name": "https://swapi.dev/api/planets/90/",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response message is Not Found\", function () {\r",
+											"    const jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.detail).to.equal(\"Not found\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://swapi.dev/api/planets/90/",
+									"protocol": "https",
+									"host": [
+										"swapi",
+										"dev"
+									],
+									"path": [
+										"api",
+										"planets",
+										"90",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Testar o endpoint `/planets/90/` para validar resposta 404.\n\n  \n**Objetivo:** Garantir a resposta apropriada para planetas inexistentes."
+				},
+				{
+					"name": "3.3 - Starship Validation",
+					"item": [
+						{
+							"name": "https://swapi.dev/api/starships/2/",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Starship name is CR90 corvette\", function () {\r",
+											"    const jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.name).to.equal(\"CR90 corvette\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://swapi.dev/api/starships/2/",
+									"protocol": "https",
+									"host": [
+										"swapi",
+										"dev"
+									],
+									"path": [
+										"api",
+										"starships",
+										"2",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Verificar se `/starships/2/` retorna \"CR90 corvette\".\n\n  \n**Objetivo:** Assegurar dados corretos para naves espaciais."
+				},
+				{
+					"name": "3.4 - Starship Error",
+					"item": [
+						{
+							"name": "https://swapi.dev/api/starships/90/",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response message is Not Found\", function () {\r",
+											"    const jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.detail).to.equal(\"Not found\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://swapi.dev/api/starships/90/",
+									"protocol": "https",
+									"host": [
+										"swapi",
+										"dev"
+									],
+									"path": [
+										"api",
+										"starships",
+										"90",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Testar o endpoint `/starships/90/` para confirmar erro 404.\n\n  \n**Objetivo:** Testar como a API lida com IDs inválidos."
+				}
+			]
+		},
+		{
+			"name": "4 Testing Films",
+			"item": [
+				{
+					"name": "4.1 - Film To Character",
+					"item": [
+						{
+							"name": "https://swapi.dev/api/people/5/",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Leia Organa appears in expected films\", function () {\r",
+											"    const jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.films).to.include.members([\r",
+											"        \"https://swapi.dev/api/films/3/\",\r",
+											"        \"https://swapi.dev/api/films/6/\"\r",
+											"    ]);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://swapi.dev/api/people/5/",
+									"protocol": "https",
+									"host": [
+										"swapi",
+										"dev"
+									],
+									"path": [
+										"api",
+										"people",
+										"5",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Checar se Leia Organa está associada corretamente aos filmes `/films/3/` e `/films/6/`.\n\n  \n**Objetivo:** Garantir que os dados de relacionamento entre personagens e filmes estejam corretos."
+				}
+			]
+		}
+	]
+}
